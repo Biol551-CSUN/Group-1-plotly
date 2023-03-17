@@ -9,3 +9,6 @@ This repository is an accumulation of information regarding the R package: Ploty
 
 # Plotly Package Description
 [Plotly](https://statisticsglobe.com/plotly-r-package) is a package used in R to visualize interactive data. This package has a variety of functions that can be applied to different graphs. 
+
+
+
