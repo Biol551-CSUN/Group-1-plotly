@@ -20,19 +20,77 @@ knitr::opts_chunk$set(
 ## Introduction
 Today, we will cover the "plotly" package and explore it using a variety of datasets. First, we will start by uploading the packages that will be needed today. If these packages do not load, be sure to install them.
 
+## Functions
+This package can be used in a variety of ways to make data interactive and fun. The functions we will be exploring today are:
+1. Interactive graphs
+2. Animations
+3. Colorbar
+
+```{r}
+help(package = "plotly") # This gives a list of functions. Delete before presenting. . . Maybe the different graph types can be listed. The key point is to show the flexibility of the package and how it can be used on a variety of graph types.
+```
+
+
 ```{r}
 library(plotly)
 library(tidyverse)
 library(here)
 library(readr)
-
+library(maps)
+library(dplyr)
+library(ggplot2)
+library(lubridate)
+library(purrr) #Used to  create the animation frames
 ```
 
-This package can be used in a variety of ways to make data interactive and fun. The functions we will be exploring today are:
 
-First, let's use the plotly function to make an engaging map of interactive data. 
+```{r}
+# Load the diamonds dataset from the ggplot package
+data("diamonds")
+```
 
-## Load Data
+
+```{r Example 1}
+# Create a plotly scatter plot with x = carat, y = price, and color = cut
+
+diamond <- diamonds %>% # Select the df
+        plot_ly( x = ~carat, 
+                 y = ~price, 
+                    color = ~cut, 
+                    type = "scatter",
+                    mode = "markers") %>%
+  layout(title = "Diamond Prices by Carat and Cut")
+
+diamond #Show plot
+```
+
+
+An example of an animation timeseries
+```{r  Example  2}
+data("economics")
+
+econ <- economics %>%
+  mutate(cumulative_pop = cumsum(pop))
+
+# Create a filled area plot with an animation frame
+econ %>%
+  plot_ly(x = ~date, 
+          y = ~cumulative_pop, 
+          fill = ~pop,
+          type = "scatter", 
+          mode = "none",
+          stackgroup = "one",
+          animation_frame = ~year(date)) %>%
+    add_trace(y = ~0, 
+              hoverinfo = "skip", 
+              showlegend = FALSE) %>%
+    layout(title = "US Population Over Time",
+           xaxis = list(title = "Date"),
+           yaxis = list(title = "Cumulative Population")) %>%
+    colorbar(title = "Population", len = 0.5, y = 0.8, ypad = 0)
+```
+
+
 
 ```{r}
 df <- read_csv(here("Data/dataset-47806.csv"))
@@ -41,9 +99,84 @@ View(df)
 
 ## Create Graph
 
-Our goal is to look at 
+Our goal is to look at the median population data for the state of California from 2000 and 2010. Note: Plotly has built-in Country and State Geometries. 
 
-```{r }
 
+ Now let's explore another graph type with this package. We will create a scatter plot with this data to create interactive points.
+ 
+```{r  Example 3}
+chemicaldata <- read_csv(here("Data/chemicaldata.csv"))
+
+# Create a scatter mapbox plot with the latitude and longitude data
+fig <- plot_ly(chemicaldata, type = "scattermapbox",
+                             mode = "markers", 
+                             marker = list(size = 10, 
+                                           color = "red"), 
+                                           lon = ~Long, lat = ~Lat)
+
+# Set the map layout
+fig <- fig %>% layout(mapbox = list(center = list(lon = -157.763, 
+                                                  lat = 21.274),
+                                                  zoom = 15, 
+                                                  style = "open-street-map"))
+
+
+fig # Show the map
 ```
 
+```{r  Example 4}
+# Create a plotly scatter plot
+fig <- plot_ly(data = iris, x = ~Sepal.Length, 
+                            y = ~Sepal.Width, 
+                            type = "scatter",
+                            mode = "markers")
+
+# Add a background image to the plot
+fig <- fig %>% add_image(
+  source = system.file("png", "iris_image", package="grDevices"), # This is not working
+  x = 4.5,
+  sizex = 2,
+  y = 3,
+  sizey = 2,
+  xanchor = "right",
+  yanchor = "bottom"
+)
+
+# Display the plot
+fig
+```
+
+Bar chart example
+```{r  Example 5}
+data("msleep")
+
+# Create bar plot
+sleep_bar <-msleep %>%
+             plot_ly(x = ~order, 
+                     y = ~sleep_rem,
+                     type = "bar", 
+                     name = "REM Sleep")
+
+# Add layout information
+sleep_bar <- sleep_bar %>% 
+  layout(title = "Average REM Sleep by Order", 
+         xaxis = list(title = "Animal Order"), 
+         yaxis = list(title = "REM Sleep (hours)"))
+
+# Show plot
+sleep_bar
+```
+## THINK, PAIR, AND SHARE
+Can you create a similar graph but show the average REM sleep by each genus?
+
+
+## References
+
+https://plotly-r.com/overview.html
+
+https://plotly.com/r/
+
+https://plotly.com/r/reference/
+
+
+## Additonal Resources
