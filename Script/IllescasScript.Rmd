@@ -30,7 +30,6 @@ library(plotly)
 
 # Load Data
 data(msleep)
-view(msleep)
 
 ```
 
