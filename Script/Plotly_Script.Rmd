@@ -3,9 +3,8 @@ title: "Ploty Package - An Introduction"
 author: "Kristen Howard"
 date: "`r Sys.Date()`"
 output: 
-  html_document:
-    toc: TRUE
-    toc_float: TRUE
+  rmdformats::readthedown
+    
 ---
 
 ```{r setup, include=FALSE}
@@ -41,12 +40,28 @@ library(dplyr)
 library(ggplot2)
 library(lubridate)
 library(purrr) #Used to  create the animation frames
+library(rmdformats)
 ```
 
 
 ```{r}
 # Load the diamonds dataset from the ggplot package
 data("diamonds")
+```
+
+3D Chart Example 
+```{r Example 6, message = FALSE}
+
+# Load Data #
+CherryTree_Data_ <- read_csv(here("Data/CherryTree Data .csv"))
+
+CherryTree <- as.matrix(CherryTree_Data_) # change the data set to a numeric matrix 
+
+fig <- plot_ly(z = ~CherryTree) # plot by numeric matrix 
+fig<- fig %>% add_surface() 
+
+
+fig 
 ```
 
 
@@ -165,24 +180,6 @@ sleep_bar <- sleep_bar %>%
 
 # Show plot
 sleep_bar
-```
-
-3D Chart Example 
-```{r Example 6}
-# Load Data #
-
-CherryTree_Data_ <- read_csv(here("Data/CherryTree Data .csv"))
-View(CherryTree_Data_)
-
-CherryTree <- as.matrix(CherryTree_Data_) # change the data set to a numeric matrix 
-CherryTree # numeric matrix 
-
-fig <- plot_ly(z = ~CherryTree) # plot by numeric matrix 
-fig<- fig %>% add_surface() 
-
-
-
-fig 
 ```
 
 
