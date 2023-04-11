@@ -166,6 +166,26 @@ sleep_bar <- sleep_bar %>%
 # Show plot
 sleep_bar
 ```
+
+3D Chart Example 
+```{r Example 6}
+# Load Data #
+
+CherryTree_Data_ <- read_csv(here("Data/CherryTree Data .csv"))
+View(CherryTree_Data_)
+
+CherryTree <- as.matrix(CherryTree_Data_) # change the data set to a numeric matrix 
+CherryTree # numeric matrix 
+
+fig <- plot_ly(z = ~CherryTree) # plot by numeric matrix 
+fig<- fig %>% add_surface() 
+
+
+
+fig 
+```
+
+
 ## THINK, PAIR, AND SHARE
 Can you create a similar graph but show the average REM sleep by each genus?
 
