@@ -1,6 +1,6 @@
 ---
 title: "Ploty Package - An Introduction"
-author: "Kristen Howard"
+author: "Kristen Howard, Sandy Illescas, Leah Reichert, Chloe Mintlow"
 date: "`r Sys.Date()`"
 output: 
   rmdformats::readthedown
@@ -21,9 +21,13 @@ Today, we will cover the "plotly" package and explore it using a variety of data
 
 ## Functions
 This package can be used in a variety of ways to make data interactive and fun. The functions we will be exploring today are:
-1. Interactive graphs
-2. Animations
-3. Colorbar
+1. add surface
+2. plot_ly
+3. animation
+4. add trace
+5. colorbar
+6. layout
+7. add image 
 
 ```{r}
 help(package = "plotly") # This gives a list of functions. Delete before presenting. . . Maybe the different graph types can be listed. The key point is to show the flexibility of the package and how it can be used on a variety of graph types.
