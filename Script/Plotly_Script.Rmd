@@ -45,6 +45,8 @@ library(ggplot2)
 library(lubridate)
 library(purrr) #Used to  create the animation frames
 library(rmdformats)
+library(heatmaply)
+library(palmerpenguins)
 ```
 
 
@@ -186,6 +188,33 @@ sleep_bar <- sleep_bar %>%
 sleep_bar
 ```
 
+Histogram example using Hobbs data
+```{r, Example 6}
+plot_ly( 
+  data = hobbs, 
+  alpha = 0.6, 
+  x = ~t, 
+  y = ~nms, 
+  type = "histogram") %>% 
+  layout(title = "A Measure of Hobbs Data")
+  
+```
+
+Heatmap example using penguin data (need to make more edits)
+```{r, Example 7}
+penguinplot <- as.matrix(penguins_raw)
+
+fig<- plot_ly(z = ~penguinplot, type = "heatmap")
+
+fig
+```
+
+Another example heatmap
+```{r, Example 8}
+fig <- plot_ly(z = volcano, type = "heatmap")
+
+fig
+```
 
 ## THINK, PAIR, AND SHARE
 Can you create a similar graph but show the average REM sleep by each genus?
