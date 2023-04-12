@@ -29,6 +29,7 @@ This package can be used in a variety of ways to make data interactive and fun. 
 6. layout
 7. add image 
 
+
 ```{r}
 help(package = "plotly") # This gives a list of functions. Delete before presenting. . . Maybe the different graph types can be listed. The key point is to show the flexibility of the package and how it can be used on a variety of graph types.
 ```
@@ -47,6 +48,7 @@ library(purrr) #Used to  create the animation frames
 library(rmdformats)
 library(heatmaply)
 library(palmerpenguins)
+library(reticulate)
 ```
 
 
@@ -55,45 +57,46 @@ library(palmerpenguins)
 data("diamonds")
 ```
 
-3D Chart Example 
-```{r Example 6, message = FALSE}
+# 3D Chart Example 
 
-# Load Data #
+# Load Data 
+```{r}
+
 CherryTree_Data_ <- read_csv(here("Data/CherryTree Data .csv"))
+```
 
+# Chnage to a numeric matrix 
+```{r}
 CherryTree <- as.matrix(CherryTree_Data_) # change the data set to a numeric matrix 
+```
 
+# Plot numeric matrix 
+```{r}
 fig <- plot_ly(z = ~CherryTree) # plot by numeric matrix 
-fig<- fig %>% add_surface() 
+fig<- fig %>% add_surface()
+```
 
-
+# View figure 
+```{r}
 fig 
 ```
 
 
-```{r Example 1}
-# Create a plotly scatter plot with x = carat, y = price, and color = cut
+# An example of an animation timeseries
+```{r}
 
-diamond <- diamonds %>% # Select the df
-        plot_ly( x = ~carat, 
-                 y = ~price, 
-                    color = ~cut, 
-                    type = "scatter",
-                    mode = "markers") %>%
-  layout(title = "Diamond Prices by Carat and Cut")
-
-diamond #Show plot
+data("economics")
 ```
 
-
-An example of an animation timeseries
-```{r  Example  2}
-data("economics")
-
+# Mutate Data   
+ 
+```{r}
 econ <- economics %>%
   mutate(cumulative_pop = cumsum(pop))
+```
 
 # Create a filled area plot with an animation frame
+```{r}
 econ %>%
   plot_ly(x = ~date, 
           y = ~cumulative_pop, 
@@ -113,83 +116,41 @@ econ %>%
 
 
 
-```{r}
-df <- read_csv(here("Data/dataset-47806.csv"))
-View(df)
-```
-
-## Create Graph
-
 Our goal is to look at the median population data for the state of California from 2000 and 2010. Note: Plotly has built-in Country and State Geometries. 
 
 
  Now let's explore another graph type with this package. We will create a scatter plot with this data to create interactive points.
- 
+
+# Load Data 
 ```{r  Example 3}
 chemicaldata <- read_csv(here("Data/chemicaldata.csv"))
+```
 
 # Create a scatter mapbox plot with the latitude and longitude data
+```{r}
 fig <- plot_ly(chemicaldata, type = "scattermapbox",
                              mode = "markers", 
                              marker = list(size = 10, 
                                            color = "red"), 
                                            lon = ~Long, lat = ~Lat)
+```
 
 # Set the map layout
+```{r}
 fig <- fig %>% layout(mapbox = list(center = list(lon = -157.763, 
                                                   lat = 21.274),
                                                   zoom = 15, 
                                                   style = "open-street-map"))
+```
 
-
+# Show the map 
+```{r}
 fig # Show the map
 ```
 
-```{r  Example 4}
-# Create a plotly scatter plot
-fig <- plot_ly(data = iris, x = ~Sepal.Length, 
-                            y = ~Sepal.Width, 
-                            type = "scatter",
-                            mode = "markers")
 
-# Add a background image to the plot
-fig <- fig %>% add_image(
-  source = system.file("png", "iris_image", package="grDevices"), # This is not working
-  x = 4.5,
-  sizex = 2,
-  y = 3,
-  sizey = 2,
-  xanchor = "right",
-  yanchor = "bottom"
-)
-
-# Display the plot
-fig
-```
-
-Bar chart example
-```{r  Example 5}
-data("msleep")
-
-# Create bar plot
-sleep_bar <-msleep %>%
-             plot_ly(x = ~order, 
-                     y = ~sleep_rem,
-                     type = "bar", 
-                     name = "REM Sleep")
-
-# Add layout information
-sleep_bar <- sleep_bar %>% 
-  layout(title = "Average REM Sleep by Order", 
-         xaxis = list(title = "Animal Order"), 
-         yaxis = list(title = "REM Sleep (hours)"))
-
-# Show plot
-sleep_bar
-```
-
-Histogram example using Hobbs data
-```{r, Example 6}
+# Histogram example using Hobbs data
+```{r}
 plot_ly( 
   data = hobbs, 
   alpha = 0.6, 
@@ -200,24 +161,95 @@ plot_ly(
   
 ```
 
-Heatmap example using penguin data (need to make more edits)
-```{r, Example 7}
+# Heatmap example using penguin data (need to make more edits)
+```{r, Example 8}
 penguinplot <- as.matrix(penguins_raw)
 
 fig<- plot_ly(z = ~penguinplot, type = "heatmap")
+```
 
+# View Plot 
+```{r}
 fig
 ```
 
-Another example heatmap
-```{r, Example 8}
-fig <- plot_ly(z = volcano, type = "heatmap")
+# Bar Chart 
 
-fig
+# Load Data 
+```{r}
+data("msleep")
 ```
+
+# Create bar plot
+```{r}
+sleep_bar <-msleep %>%
+             plot_ly(x = ~order, 
+                     y = ~sleep_rem,
+                     type = "bar", 
+                     name = "REM Sleep")
+```
+
+# Add layout information
+```{r}
+sleep_bar <- sleep_bar %>% 
+  layout(title = "Average REM Sleep by Order", 
+         xaxis = list(title = "Animal Order"), 
+         yaxis = list(title = "REM Sleep (hours)"))
+```
+
+# Show plot
+```{r}
+sleep_bar
+```
+
 
 ## THINK, PAIR, AND SHARE
 Can you create a similar graph but show the average REM sleep by each genus?
+
+
+```{r}
+# Load Data
+data(msleep)
+```
+
+# Assinging a Data Set 
+```{r}
+msleep <- ggplot2::msleep %>% # we need to assign the data set "msleep" found in ggplot and assign it to our current RMarkdown.
+  rename(`Type of Diet` = vore, `Total Hours of Sleep` = sleep_total) %>% #changes names before making graph so axis doesn't need to be changed later
+  na.omit() #removes any incomplete or N/A data from data set
+```
+
+# Create a bar graph
+```{r}
+Q <- msleep %>% # We have assigned our graph the letter Q to request it easily later
+  plot_ly(x = ~reorder(`Type of Diet`, -`Total Hours of Sleep`), 
+          y = ~`Total Hours of Sleep`, # changing the order of how the bars show up so they're increasing in hours of sleep.
+          type = 'bar', # type of graph
+          marker = list(color = rainbow(nrow(msleep), #uses rainbow colors for bars indicating their sleeping hours individually and as a dietary group.
+                        alpha = 0.7))) %>% #determines the transparency/opacity of the bars 0.0 being completely transparent
+  
+  
+  layout(xaxis = list(title = "Type of Diet"), #naming x-axis
+         yaxis = list(title = "Total Hours of Sleep"), #naming y-axis
+         title = "Total Hours of Sleep vs. Type of Diet") #naming graph
+
+```
+
+# Animating your Graph
+```{r}
+# Add animation to the bars
+Q <- Q %>% 
+  animation_opts(frame = 100, easing = 'elastic') #controls timing and style of animation,
+
+```
+
+# Displaying our Results
+```{r}
+
+# Display the graph
+Q
+```
+
 
 
 ## References
