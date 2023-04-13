@@ -5,14 +5,14 @@ This repository is an accumulation of information regarding the R package: Ploty
 [Plotly](https://statisticsglobe.com/plotly-r-package) is a package used in R to visualize interactive data. This package has a variety of functions that can be applied to different graphs. 
 
 # Functions Covered:
-- add_surface
-- plot_ly
-- animation
-- add_trace
-- colorbar
-- layout
+- add_surface: Add trace(s) to a plotly visualization
+- plot_ly: 	Initiate a plotly visualization
+- animation: Animation configuration options
+- add_trace: 	Add trace(s) to a plotly visualization
+- colorbar:	Modify the colorbar
+- layout: Modify the layout of a plotly visualization
 
-
+Note: A trace is the name we give a collection of data and the specifications of which we want that data plotted
 
 # Group 1 Members
 1. Leah Reichart
