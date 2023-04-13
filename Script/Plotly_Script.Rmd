@@ -281,7 +281,7 @@ diet_sleep
 
 <https://plotly.com/r/reference/>
 
-## Additonal Resources
+## Additional Resources
 
 [ggplotly()](https://plotly-r.com/overview.html#intro-ggplotly) - Allows
 you to change ggplot functions into animations.
