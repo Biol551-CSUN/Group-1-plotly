@@ -21,8 +21,8 @@ knitr::opts_chunk$set(
 ## Introduction
 
 Today, we will cover the "plotly" package and explore it using a variety
-of data sets. First, we will start by uploading the packages that will be
-needed today. If these packages do not load, be sure to install them.
+of data sets. First, we will start by uploading the packages that will
+be needed today. If these packages do not load, be sure to install them.
 
 ## Functions
 
@@ -81,7 +81,6 @@ fig<- fig %>% add_surface()
 ```{r, Example.1_3D_Plot}
 fig # Display plot
 ```
-
 
 # An example of an animation timeseries
 
@@ -283,3 +282,6 @@ diet_sleep
 <https://plotly.com/r/reference/>
 
 ## Additonal Resources
+
+[ggplotly()](https://plotly-r.com/overview.html#intro-ggplotly) - Allows
+you to change ggplot functions into animations.
