@@ -11,6 +11,7 @@ This repository is an accumulation of information regarding the R package: Ploty
 - **add_trace**: 	Add trace(s) to a plotly visualization
 - **colorbar**:	Modify the colorbar
 - **layout**: Modify the layout of a plotly visualization
+- **add_text** : Add trace(s) to a plotly visualization 
 
 *Note: A trace is the name we give a collection of data and the specifications of which we want that data plotted*
 
@@ -18,12 +19,14 @@ This repository is an accumulation of information regarding the R package: Ploty
 1. Leah Reichart
 - Developed the example of one of the functions using the "Cherry Tree Data"
 - Applied and finialized the RMarkdown theme.
+- Assisted in the organization of the repository.
 
 2. Sandy Illescas
 - Developed the example of one of the functions using the "msleep (part 2)"
 
 3. Chloe Mintlow
 - Assisted in the development of package functions selected
+- Helped modify the README file.
 
 4. Kristen Howard
 - Created RMarkdown File
