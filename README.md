@@ -11,7 +11,7 @@ This repository is an accumulation of information regarding the R package: Ploty
 - **add_trace**: 	Add trace(s) to a plotly visualization
 - **colorbar**:	Modify the colorbar
 - **layout**: Modify the layout of a plotly visualization
-- **add_text** : Add trace(s) to a plotly visualization 
+- **save_image**: Allowed us to save our graphs as static .png images using python packages
 
 *Note: A trace is the name we give a collection of data and the specifications of which we want that data plotted*
 
@@ -23,10 +23,15 @@ This repository is an accumulation of information regarding the R package: Ploty
 
 2. Sandy Illescas
 - Developed the example of one of the functions using the "msleep (part 2)"
+- Assisted in the development of package functions
+- Created an example using animations using data set "msleep (part 2)"
+- Updated README.md file
+- Created all static .png images using python
+      Created "Output" file and used save_image to save create all figures.
+      Installation: kaleido() required the kaleido python package to be usable via the reticulate package. Python packages installed. 
 
 3. Chloe Mintlow
 - Assisted in the development of package functions selected
-- Helped modify the README file.
 
 4. Kristen Howard
 - Created RMarkdown File
