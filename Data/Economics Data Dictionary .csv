@@ -1,0 +1,7 @@
+Variable,Description,Units
+date,month of data collection,
+pce,personal consumption expenditures,in billions of dollars
+pop,total population,in thousands
+psavert,personal savings rate,
+uempmed,median duration of unemployment,in weeks
+unemploy,number of unemployed ,in thousands

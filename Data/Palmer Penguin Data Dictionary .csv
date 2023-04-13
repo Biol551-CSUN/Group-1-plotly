@@ -1,0 +1,9 @@
+Variable,Description,Units
+species,A factor denoting penguin species,"(""Adelie"", ""Gentoo"", and ""Chinstrap"")"
+island,"A factor denoting island in Palmer Archipelago, Anartica","(""Torgersen"", ""Biscoe"", and ""Dream"")"
+bill_lenth_mm,an integer denoting bill length,mm
+bill_depth_mm,an integer denoting bill depth,mm
+flipper_length_mm,an integer denoting flipper length,mm
+body_mass_g,an integer denoting body mass,g
+sex,A factor denoting penguin sex,(female or male)
+year,The study year,"(2007, 2008, 2009)"
