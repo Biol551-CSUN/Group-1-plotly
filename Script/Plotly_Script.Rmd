@@ -185,7 +185,6 @@ fig<- plot_ly(z = ~penguinplot, type = "heatmap")
 ```{r, Example.5_Heatmap}
 fig
 
-
 ```
 
 # Bar Chart
@@ -226,12 +225,13 @@ sleep_bar
 Can you create a similar graph but show the average REM sleep by each
 genus?
 
-```{r}
 # Load Data
-data(msleep)
+
+```{r}
+data(msleep) # Load Data
 ```
 
-# Assinging a Data Set
+# Subset data set
 
 ```{r}
 msleep <- ggplot2::msleep %>% # we need to assign the data set "msleep" found in ggplot and assign it to our current RMarkdown.
@@ -242,7 +242,7 @@ msleep <- ggplot2::msleep %>% # we need to assign the data set "msleep" found in
 # Create a bar graph
 
 ```{r}
-Q <- msleep %>% # We have assigned our graph the letter Q to request it easily later
+diet_sleep <- msleep %>% # We have assigned our graph the letter Q to request it easily later
   plot_ly(x = ~reorder(`Type of Diet`, -`Total Hours of Sleep`), 
           y = ~`Total Hours of Sleep`, # changing the order of how the bars show up so they're increasing in hours of sleep.
           type = 'bar', # type of graph
@@ -260,8 +260,8 @@ Q <- msleep %>% # We have assigned our graph the letter Q to request it easily l
 
 ```{r}
 # Add animation to the bars
-Q <- Q %>% 
-  animation_opts(frame = 100, easing = 'elastic') #controls timing and style of animation,
+diet_sleep <- diet_sleep %>% 
+                animation_opts(frame = 100, easing = 'elastic') #controls timing and style of animation,
 
 ```
 
@@ -270,7 +270,7 @@ Q <- Q %>%
 ```{r, Example.7_Barplot2}
 
 # Display the graph
-Q
+diet_sleep
 
 ```
 
