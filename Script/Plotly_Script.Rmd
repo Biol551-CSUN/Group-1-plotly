@@ -170,7 +170,7 @@ save_image(fig3, here("Output", "ChemData.png"))
 # 2D Histogram Example Using Penguin Data
 
 ```{r }
-plot_ly( 
+fig4 <- plot_ly( 
   data = penguins, 
   alpha = 0.6, 
   x = ~bill_depth_mm, 
@@ -181,29 +181,15 @@ plot_ly(
   layout(title = "A Measure of Penguin Bill Depth and Islands", 
          xaxis = list(title = "Bill Depth (mm)"), 
          yaxis = list(title = "Species"))
+fig4
   
 ```
 
-# Heatmap example using penguin data (need to make more edits)
-
 ```{r}
-penguinplot <- as.matrix(penguins_raw) # Change data set to matrix
-
-fig4<- plot_ly(z = ~penguinplot, type = "heatmap") 
+save_image(fig4, here("Output", "PenguinHisto.png"))
 ```
 
-# View Plot
-
-```{r, Example.5_Heatmap}
-fig4
-
-```
-
-```{r}
-save_image(fig4, here("Output", "Heatmap.png"))
-```
-
-# Bar Chart
+# REM Sleep Bar Chart
 
 # Load Data
 
