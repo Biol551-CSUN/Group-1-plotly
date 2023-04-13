@@ -14,7 +14,7 @@ This repository is an accumulation of information regarding the R package: Ploty
 
 
 
-# Group 1 Members/
+# Group 1 Members
 1. Leah Reichart
 - Developed the example of one of the functions using the "Cherry Tree Data"
 - Applied and finialized the RMarkdown theme.
@@ -28,7 +28,7 @@ This repository is an accumulation of information regarding the R package: Ploty
 4. Kristen Howard
 - Created RMarkdown File
 - Organized and clean repository
-- Created examples using the following datasets: ("economics", "chemicaldata", "Palmer penguins",  & "msleep (part 1")
+- Created examples using the following datasets: ("economics", "chemicaldata", "Palmer penguins",  & "msleep (part 1)"
 - Created Data Dictionary and finalized format (created dictionaries for the data sets listed directly above and finalized format for all data sets)
 
 
