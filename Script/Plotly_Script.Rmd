@@ -35,6 +35,7 @@ and fun. The functions we will be exploring today are:
 4.  add_trace
 5.  colorbar
 6.  layout
+7.  add_text
 
 ```{r}
 library(plotly)
@@ -154,16 +155,20 @@ fig <- fig %>% layout(mapbox = list(center = list(lon = -157.763,
 fig # Show the map
 ```
 
-# Histogram example using Hobbs data
+# 2D Histogram Example Using Penguin Data
 
 ```{r }
 plot_ly( 
-  data = hobbs, 
+  data = penguins, 
   alpha = 0.6, 
-  x = ~t, 
-  y = ~nms, 
-  type = "histogram") %>% 
-  layout(title = "A Measure of Hobbs Data")
+  x = ~bill_depth_mm, 
+  y = ~species, 
+  type = "histogram2d", 
+  text = ~paste('</br> species:', species, 
+                '</br> bill depth', bill_depth_mm)) %>% 
+  layout(title = "A Measure of Penguin Bill Depth and Islands", 
+         xaxis = list(title = "Bill Depth (mm)"), 
+         yaxis = list(title = "Species"))
   
 ```
 
