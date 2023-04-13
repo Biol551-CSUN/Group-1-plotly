@@ -12,7 +12,7 @@ This repository is an accumulation of information regarding the R package: Ploty
 - **colorbar**:	Modify the colorbar
 - **layout**: Modify the layout of a plotly visualization
 
-*Note: A trace is the name we give a collection of data and the specifications of which we want that data plotted
+*Note: A trace is the name we give a collection of data and the specifications of which we want that data plotted*
 
 # Group 1 Members
 1. Leah Reichart
