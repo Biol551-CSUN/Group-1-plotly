@@ -4,7 +4,9 @@ author: "Kristen Howard, Sandy Illescas, Leah Reichert, Chloe Mintlow"
 date: "`r Sys.Date()`"
 output: 
   rmdformats::readthedown
-    
+editor_options: 
+  markdown: 
+    wrap: 72
 ---
 
 ```{r setup, include=FALSE}
@@ -17,19 +19,22 @@ knitr::opts_chunk$set(
 ```
 
 ## Introduction
-Today, we will cover the "plotly" package and explore it using a variety of datasets. First, we will start by uploading the packages that will be needed today. If these packages do not load, be sure to install them.
+
+Today, we will cover the "plotly" package and explore it using a variety
+of data sets. First, we will start by uploading the packages that will be
+needed today. If these packages do not load, be sure to install them.
 
 ## Functions
-This package can be used in a variety of ways to make data interactive and fun. The functions we will be exploring today are:
-1. add surface
-2. plot_ly
-3. animation
-4. add trace
-5. colorbar
-6. layout
-7. add image 
 
+This package can be used in a variety of ways to make data interactive
+and fun. The functions we will be exploring today are:
 
+1.  add_surface
+2.  plot_ly
+3.  animation
+4.  add_trace
+5.  colorbar
+6.  layout
 
 ```{r}
 library(plotly)
@@ -47,54 +52,61 @@ library(palmerpenguins)
 library(reticulate)
 ```
 
+# 3D Chart Example
 
-# 3D Chart Example 
+# Load Data
 
-# Load Data 
 ```{r}
 
-CherryTree_Data_ <- read_csv(here("Data/CherryTree Data .csv"))
+CherryTree_Data_ <- read_csv(here("Data/CherryTree Data .csv")) # Load data
 ```
 
-# Change to a numeric matrix 
+# Change to a numeric matrix
+
 ```{r}
 CherryTree <- as.matrix(CherryTree_Data_) # change the data set to a numeric matrix 
 ```
 
-# Plot numeric matrix 
+# Plot numeric matrix
+
 ```{r}
 fig <- plot_ly(z = ~CherryTree) # plot by numeric matrix 
 fig<- fig %>% add_surface()
+
 ```
 
-# View figure 
-```{r Example 1 - 3D Plot}
-fig 
+# View figure
+
+```{r, Example.1_3D_Plot}
+fig # Display plot
 ```
 
 
 # An example of an animation timeseries
+
 ```{r}
 
-data("economics")
+data("economics") # Load in dataset that is already built into R
 ```
 
-# Mutate Data   
+# Mutate Data
+
 ```{r}
-econ <- economics %>%
-  mutate(cumulative_pop = cumsum(pop))
+econ <- economics %>% # Subset data
+  mutate(cumulative_pop = cumsum(pop)) # Creates a new column
 ```
 
 # Create a filled area plot with an animation frame
-```{r Example 2 - Filled area plot}
+
+```{r, Example.2_Filled_area_plot}
 econ %>%
-  plot_ly(x = ~date, 
+  plot_ly(x = ~date,  # Specify x and y variables of interest
           y = ~cumulative_pop, 
           fill = ~pop,
-          type = "scatter", 
+          type = "scatter", # Insert graph type
           mode = "none",
           stackgroup = "one",
-          animation_frame = ~year(date)) %>%
+          animation_frame = ~year(date)) %>% # 
     add_trace(y = ~0, 
               hoverinfo = "skip", 
               showlegend = FALSE) %>%
@@ -104,20 +116,23 @@ econ %>%
     colorbar(title = "Population", len = 0.5, y = 0.8, ypad = 0)
 ```
 
+Our goal is to look at the median population data for the state of
+California from 2000 and 2010. Note: Plotly has built-in Country and
+State Geometries.
 
-Our goal is to look at the median population data for the state of California from 2000 and 2010. Note: Plotly has built-in Country and State Geometries. 
+Now let's explore another graph type with this package. We will create a
+scatter plot with this data to create interactive points.
 
+# Load Data
 
- Now let's explore another graph type with this package. We will create a scatter plot with this data to create interactive points.
-
-# Load Data 
 ```{r }
-chemicaldata <- read_csv(here("Data/chemicaldata.csv"))
+chemicaldata <- read_csv(here("Data/chemicaldata.csv")) # Load data
 ```
 
 # Create a scatter mapbox plot with the latitude and longitude data
+
 ```{r}
-fig <- plot_ly(chemicaldata, type = "scattermapbox",
+fig <- plot_ly(chemicaldata, type = "scattermapbox", # Specify df, graph type, and etc.
                              mode = "markers", 
                              marker = list(size = 10, 
                                            color = "red"), 
@@ -125,6 +140,7 @@ fig <- plot_ly(chemicaldata, type = "scattermapbox",
 ```
 
 # Set the map layout
+
 ```{r}
 fig <- fig %>% layout(mapbox = list(center = list(lon = -157.763, 
                                                   lat = 21.274),
@@ -132,13 +148,14 @@ fig <- fig %>% layout(mapbox = list(center = list(lon = -157.763,
                                                   style = "open-street-map"))
 ```
 
-# Show the map 
-```{r Example 3 - Map}
+# Show the map
+
+```{r, Example.3_Map}
 fig # Show the map
 ```
 
-
 # Histogram example using Hobbs data
+
 ```{r }
 plot_ly( 
   data = hobbs, 
@@ -151,25 +168,31 @@ plot_ly(
 ```
 
 # Heatmap example using penguin data (need to make more edits)
-```{r, Example 5 - Heapmap }
-penguinplot <- as.matrix(penguins_raw)
 
-fig<- plot_ly(z = ~penguinplot, type = "heatmap")
+```{r}
+penguinplot <- as.matrix(penguins_raw) # Change data set to matrix
+
+fig<- plot_ly(z = ~penguinplot, type = "heatmap") 
 ```
 
-# View Plot 
-```{r}
+# View Plot
+
+```{r, Example.5_Heatmap}
 fig
+
+
 ```
 
-# Bar Chart 
+# Bar Chart
 
-# Load Data 
+# Load Data
+
 ```{r}
-data("msleep")
+data("msleep") # Load data
 ```
 
 # Create bar plot
+
 ```{r}
 sleep_bar <-msleep %>%
              plot_ly(x = ~order, 
@@ -179,6 +202,7 @@ sleep_bar <-msleep %>%
 ```
 
 # Add layout information
+
 ```{r}
 sleep_bar <- sleep_bar %>% 
   layout(title = "Average REM Sleep by Order", 
@@ -187,21 +211,23 @@ sleep_bar <- sleep_bar %>%
 ```
 
 # Show plot
-```{r Example 6 - Barplot1}
+
+```{r, Example.6_Barplot1}
 sleep_bar
 ```
 
-
 ## THINK, PAIR, AND SHARE
-Can you create a similar graph but show the average REM sleep by each genus?
 
+Can you create a similar graph but show the average REM sleep by each
+genus?
 
 ```{r}
 # Load Data
 data(msleep)
 ```
 
-# Assinging a Data Set 
+# Assinging a Data Set
+
 ```{r}
 msleep <- ggplot2::msleep %>% # we need to assign the data set "msleep" found in ggplot and assign it to our current RMarkdown.
   rename(`Type of Diet` = vore, `Total Hours of Sleep` = sleep_total) %>% #changes names before making graph so axis doesn't need to be changed later
@@ -209,6 +235,7 @@ msleep <- ggplot2::msleep %>% # we need to assign the data set "msleep" found in
 ```
 
 # Create a bar graph
+
 ```{r}
 Q <- msleep %>% # We have assigned our graph the letter Q to request it easily later
   plot_ly(x = ~reorder(`Type of Diet`, -`Total Hours of Sleep`), 
@@ -225,6 +252,7 @@ Q <- msleep %>% # We have assigned our graph the letter Q to request it easily l
 ```
 
 # Animating your Graph
+
 ```{r}
 # Add animation to the bars
 Q <- Q %>% 
@@ -233,21 +261,20 @@ Q <- Q %>%
 ```
 
 # Displaying our Results
-```{r Example 7 - Barplot2}
+
+```{r, Example.7_Barplot2}
 
 # Display the graph
 Q
+
 ```
-
-
 
 ## References
 
-https://plotly-r.com/overview.html
+<https://plotly-r.com/overview.html>
 
-https://plotly.com/r/
+<https://plotly.com/r/>
 
-https://plotly.com/r/reference/
-
+<https://plotly.com/r/reference/>
 
 ## Additonal Resources
