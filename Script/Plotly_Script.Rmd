@@ -30,10 +30,6 @@ This package can be used in a variety of ways to make data interactive and fun. 
 7. add image 
 
 
-```{r}
-help(package = "plotly") # This gives a list of functions. Delete before presenting. . . Maybe the different graph types can be listed. The key point is to show the flexibility of the package and how it can be used on a variety of graph types.
-```
-
 
 ```{r}
 library(plotly)
@@ -52,11 +48,6 @@ library(reticulate)
 ```
 
 
-```{r}
-# Load the diamonds dataset from the ggplot package
-data("diamonds")
-```
-
 # 3D Chart Example 
 
 # Load Data 
@@ -65,7 +56,7 @@ data("diamonds")
 CherryTree_Data_ <- read_csv(here("Data/CherryTree Data .csv"))
 ```
 
-# Chnage to a numeric matrix 
+# Change to a numeric matrix 
 ```{r}
 CherryTree <- as.matrix(CherryTree_Data_) # change the data set to a numeric matrix 
 ```
@@ -77,7 +68,7 @@ fig<- fig %>% add_surface()
 ```
 
 # View figure 
-```{r}
+```{r Example 1 - 3D Plot}
 fig 
 ```
 
@@ -89,14 +80,13 @@ data("economics")
 ```
 
 # Mutate Data   
- 
 ```{r}
 econ <- economics %>%
   mutate(cumulative_pop = cumsum(pop))
 ```
 
 # Create a filled area plot with an animation frame
-```{r}
+```{r Example 2 - Filled area plot}
 econ %>%
   plot_ly(x = ~date, 
           y = ~cumulative_pop, 
@@ -115,14 +105,13 @@ econ %>%
 ```
 
 
-
 Our goal is to look at the median population data for the state of California from 2000 and 2010. Note: Plotly has built-in Country and State Geometries. 
 
 
  Now let's explore another graph type with this package. We will create a scatter plot with this data to create interactive points.
 
 # Load Data 
-```{r  Example 3}
+```{r }
 chemicaldata <- read_csv(here("Data/chemicaldata.csv"))
 ```
 
@@ -144,13 +133,13 @@ fig <- fig %>% layout(mapbox = list(center = list(lon = -157.763,
 ```
 
 # Show the map 
-```{r}
+```{r Example 3 - Map}
 fig # Show the map
 ```
 
 
 # Histogram example using Hobbs data
-```{r}
+```{r }
 plot_ly( 
   data = hobbs, 
   alpha = 0.6, 
@@ -162,7 +151,7 @@ plot_ly(
 ```
 
 # Heatmap example using penguin data (need to make more edits)
-```{r, Example 8}
+```{r, Example 5 - Heapmap }
 penguinplot <- as.matrix(penguins_raw)
 
 fig<- plot_ly(z = ~penguinplot, type = "heatmap")
@@ -198,7 +187,7 @@ sleep_bar <- sleep_bar %>%
 ```
 
 # Show plot
-```{r}
+```{r Example 6 - Barplot1}
 sleep_bar
 ```
 
@@ -244,7 +233,7 @@ Q <- Q %>%
 ```
 
 # Displaying our Results
-```{r}
+```{r Example 7 - Barplot2}
 
 # Display the graph
 Q
